@@ -58,7 +58,7 @@ jobs:
     - name: Build with Maven
       run: mvn --errors --show-version --batch-mode --no-transfer-progress -Ddoclint=all
     - name: SonarQube Analysis
-      if: matrix.os == 'ubuntu-latest' && matrix.java == '17'
+      if: matrix.os == 'ubuntu-latest' && matrix.java == 17
       run: mvn sonar:sonar -Dsonar.projectKey=projectkeey2 -DskipTests
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
