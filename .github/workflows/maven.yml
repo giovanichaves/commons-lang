@@ -82,7 +82,4 @@ jobs:
     - name: Build and Test
       run: mvn verify --errors --show-version --batch-mode --no-transfer-progress
     - name: SonarQube Analysis
-      run: mvn sonar:sonar -Dsonar.projectKey=projectkeey2 --batch-mode --no-transfer-progress
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      run: mvn sonar:sonar -Dsonar.projectKey=projectkeey2 -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} -Dsonar.token=${{ secrets.SONAR_TOKEN }} --batch-mode --no-transfer-progress
