@@ -57,3 +57,8 @@ jobs:
         java-version: ${{ matrix.java }}
     - name: Build with Maven
       run: mvn -DskipTests --errors --show-version --batch-mode --no-transfer-progress -Ddoclint=all
+    - name: SonarQube Analysis
+      if: matrix.os == 'ubuntu-latest' && matrix.java == '17' && vars.SONAR_HOST_URL
+      run: mvn sonar:sonar -Dsonar.projectKey=commons-lang3 -Dsonar.host.url=${{ vars.SONAR_HOST_URL }} -DskipTests
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
